@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://srn1tb5b78h8"]
+
+[ext_resource type="PackedScene" uid="uid://b2r6ihyqi3scx" path="res://assets/models/map/tree.glb" id="1_ry45r"]
+[ext_resource type="PackedScene" uid="uid://dpllutnle2s05" path="res://scenes/player/player.tscn" id="1_yggfj"]
+[ext_resource type="ArrayMesh" uid="uid://bnmycwgfva7jt" path="res://assets/models/map/tree.tres" id="2_dsb46"]
+[ext_resource type="Script" uid="uid://b8rx3mg2fw8bc" path="res://scenes/player/player.gd" id="2_eig8f"]
+[ext_resource type="PackedScene" uid="uid://bca2xt7cyhhge" path="res://scenes/objects/palm_tree.tscn" id="3_7517i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bfc6h"]
+size = Vector3(24, 1, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yggfj"]
+size = Vector3(24, 1, 24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eig8f"]
+size = Vector3(4, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7517i"]
+size = Vector3(4, 2, 4)
+
+[node name="Stage" type="Node3D" unique_id=1709116623]
+
+[node name="World" type="Node3D" parent="." unique_id=1785283531]
+
+[node name="Ground" type="MeshInstance3D" parent="World" unique_id=1044215789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_bfc6h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Ground" unique_id=1141634007]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D" unique_id=329385236]
+shape = SubResource("BoxShape3D_yggfj")
+
+[node name="Platform" type="MeshInstance3D" parent="World" unique_id=1858577637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -2)
+mesh = SubResource("BoxMesh_eig8f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Platform" unique_id=561339247]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Platform/StaticBody3D" unique_id=1556057051]
+shape = SubResource("BoxShape3D_7517i")
+
+[node name="tree" parent="World" unique_id=126325820 instance=ExtResource("1_ry45r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
+skeleton = NodePath("../..")
+
+[node name="Tree" type="MeshInstance3D" parent="World" unique_id=44976238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 4)
+mesh = ExtResource("2_dsb46")
+
+[node name="Player" parent="." unique_id=60042014 instance=ExtResource("1_yggfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
+script = ExtResource("2_eig8f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1293082417]
+transform = Transform3D(0.819152, 0.469846, -0.32899, 0, 0.573576, 0.819152, 0.573576, -0.67101, 0.469846, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PalmTree" parent="." unique_id=1783262428 instance=ExtResource("3_7517i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)

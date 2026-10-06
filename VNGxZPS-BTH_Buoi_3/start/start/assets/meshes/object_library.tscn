@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch4bnvna0ueys"]
+
+[ext_resource type="ArrayMesh" uid="uid://bnmycwgfva7jt" path="res://assets/models/map/tree.tres" id="1_rdh73"]
+
+[node name="ObjectLibrary" type="Node3D"]
+
+[node name="Tree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("1_rdh73")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tree"]
